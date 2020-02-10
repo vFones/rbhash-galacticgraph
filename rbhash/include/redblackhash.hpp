@@ -20,15 +20,14 @@ class RedBlackHash {
     int _size;
 
   public:
-    //fixed size of 285700
-    RedBlackHash(int s = 285700);
+    RedBlackHash(int s = 9973);
     ~RedBlackHash(){};
     
     //redblack getter
     RedBlackTree<HashTable<D> *> *getRBHashTree(){return this->_rb;};
     
     bool insert(int k1, int k2, D d);
-    bool search(int k1, int k2, D d);
+    RedBlackNode<HashTable<D> *>* search(int k1, int k2, D d);
     bool remove(int k1, int k2, D d);
 
     // print chaining

@@ -29,14 +29,18 @@ bool RedBlackHash<D>::insert(int k1, int k2, D d) {
     if(node->getData()->search(key2) < 0)           // if there isnt already a key2
       if(node->getData()->insert(key2, d) >= 0)     // and also there is space
         return true;
-  
+      else
+        std::cerr<<"\nerror: there is no space left in hash table in node "<<key1<<"\n";
+    else 
+      std::cerr<<"\nerror: there is already an hashnode with key = "<<key2<<"\n";
+
   // if here means that there is already a key or there is no space
   return false;
 }
 
 
 template <typename D>
-bool RedBlackHash<D>::search(int k1, int k2, D d) {
+RedBlackNode<HashTable<D> *>* RedBlackHash<D>::search(int k1, int k2, D d) {
   auto key1 = static_cast<double>(k1);
   auto key2 = static_cast<double>(k2);
 
@@ -46,30 +50,32 @@ bool RedBlackHash<D>::search(int k1, int k2, D d) {
     auto j = node->getData()->search(key2); 
     if( j >= 0) {
       if(node->getData()->search(j) == d )
-        return true;
+        return node;
       else
-        std::cerr<<"no value in node["<<key1<<"] hash["<<key2<<"]-> "<<d<<"\n"<<
-          "maybe you were looking for: "<<node->getData()->search(j) <<std::endl;
+        std::cerr<<"\nerror: no value in node["<<key1<<"] hash["<<key2<<"]-> "<<d<<"\n"<<
+          "maybe you were looking for: "<<node->getData()->search(j)<<"\n";
     }
-    else
-      std::cerr<<"no hashtable with key2 = ["<<k2<<"]"<<std::endl;
+    else{
+      std::cerr<<"\nerror: no hash node with key2 = ["<<k2<<"]\n";
+      std::cerr<<"\nhash in node["<<key1<<"] "<<"only got keys: ";
+      node->getData()->printKeys();
+    }
   }
   else
-    std::cerr<<"no node with key1 = ["<<k1<<"]"<<std::endl;
+    std::cerr<<"\nerror: no RB node with key1 = ["<<k1<<"]\n";
 
-  return false;
+  return nullptr;
 }
 
 
 template <typename D>
 bool RedBlackHash<D>::remove(int key1, int key2, D data) {
   // if tuple is correct
-  if(this->search(key1, key2, data)) {
+  auto node = this->search(key1, key2, data);
+  if(node != nullptr) {
     auto k1 = static_cast<double>(key1);
     auto k2 = static_cast<double>(key2);
 
-    // search for a RB node
-    auto node = this->_rb->search(k1);
     // if hashtable got only one value (key1)
     if(node->getData()->getQuantity() == 1)
       this->_rb->deleteNode(k1); // delete RB node
