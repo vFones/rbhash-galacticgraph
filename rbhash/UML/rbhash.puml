@@ -23,11 +23,11 @@ class RedBlackHash < Data > {
 class Parser {
   {field} - _hashsize : int 
   {field} - _filename : string
-  {field} - _rh : RedBlackHash<std::string> *
+  {field} - _rh : RedBlackHash<string> *
   + Parser(const string fn, int hashsize);
   + ~Parser()
   + insert(string str) : bool
-  + search(string str) : bool
+  + search(string str) : RedBlackNode<Hashtable<string>*>*
   + remove(string str) : bool
   + print()
 }

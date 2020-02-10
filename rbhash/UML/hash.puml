@@ -52,6 +52,7 @@ class HashTable < Data, HF >{
   + search(double &k) : int
   + search(int &j) :  D
   + remove(double &k) : int
+  + printKeys()
   + <<friend>> operator<<(ostream &Str, HashTable *c) : ostream& 
 }
 
