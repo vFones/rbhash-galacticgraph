@@ -17,7 +17,7 @@ class Parser {
     RedBlackHash<std::string> *_rh;
 
   public:
-    Parser(const std::string fn, int hashsize = 15000);
+    Parser(const std::string fn, int hashsize = 9973);
     ~Parser(){};
     
     //  tuples must be in format <int> keys and <string> data -> key1:key2:data
