@@ -38,7 +38,8 @@ enum state {
 class HashTable < Data, HF >{
   {field} - *_S : vector<state>
   {field} - *_T : vector<GenericNode*>
-  {field} - _h : HF
+  {field} - _h1 : int
+  {field} - _h2 : int
   {field} - _m : int
   {field} - _occ : int
   + HashTable( int size)
@@ -54,13 +55,9 @@ class HashTable < Data, HF >{
   + <<friend>> operator<<(ostream &Str, HashTable *c) : ostream& 
 }
 
-class HashFunction {
-  + operator() (double k, int i, int m) : int
-}
 
 Item <|-up- GenericNode
 GenericNode --* HashTable
 state --* HashTable
-HashFunction -up- HashTable
 
 @enduml
