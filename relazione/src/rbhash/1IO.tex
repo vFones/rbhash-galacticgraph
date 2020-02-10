@@ -1,0 +1,38 @@
+\def\baselinestretch{1}
+\section{Formato di input e di output}
+\def\baselinestretch{1.66}
+\thispagestyle{headings}
+
+\subsection{Input}
+\indent Il programma lavora su tuple nel formato $chiave1:chiave2:stringa$ e i dati in input sono dati da:
+\begin{itemize}
+    \item file di testo da selezionare all'avvio contenente le tuple;
+    \begin{lstlisting}[language=bash]
+    $ ./rbhash inputs/asd.txt
+    \end{lstlisting}
+    \item opzione da tastiera per effettuare operazioni sulle tuple.
+     \begin{lstlisting}[language=bash]
+    >_ 1:2:stringa
+    \end{lstlisting}
+\end{itemize}
+Il programma legger\`a le righe e allocher\`a nodi e hashtable in base alle chiavi date in input.
+\subsection{Output}
+L'output del programma \`e un menu contestuale in cui l'utente pu\`o effettuare le operazioni
+mostrate di seguito:
+
+
+\begin{lstlisting}[language=bash]
+  **** MENU ****
+
+   1. Insert
+   2. Remove
+   3. Query
+   4. Print
+   0. Exit
+  >_
+\end{lstlisting}
+
+
+\noindent Tutte le opzioni restituiscono un output di avvenuta operazione con dettagli su eventuali errori,
+ad eccezzione della stampa (opzione 4) che restituisce in output l'intera struttura dati caricata
+in memoria.

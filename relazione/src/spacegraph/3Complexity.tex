@@ -1,0 +1,19 @@
+\def\baselinestretch{1}
+\section{Studio complessit\`a}
+\def\baselinestretch{1.66}
+\thispagestyle{headings}
+La complessit\`a di tempo data dall'algoritmo galactic dijkstra \`e influenzata
+dalle \textbf{due esecuzioni} (al pi\`u) del classico algoritmo di Dijkstra. Il calcolo
+dei percorsi impiega $O(3E)$ poich\'e per raggiungere un nodo fino alla sorgente vuol dire
+ripercorrere l'albero attraversando ogni arco nel caso peggiore, quindi mettendoci un tempo lineare.
+Per cui si considerano le due applicazioni di Dijkstra che impiegano $O(2(V+E) 2log_2 V)$ che diventa
+$O(2E2log_2 V)$ se ogni vertice \`e raggiungibile dalla sorgente, ma poich\`e è possibile portare
+le costanti moltiplicative fuori diremo che la complessit\`a finale sar\`a $\mathbf{O(Elog_2V)}$.
+L'algoritmo di Dijkstra impiega tale complessit\`a poich\'e influenzato dalle operazioni
+$extractMin()$ e $decreaseKey()$ impiegate $|E|$ volte dalla coda di min priorit\`a basata
+su min heap.
+Si poteva pensare di usare un Heap di Fibonacci poich\'e si \`e notato che l'algoritmo
+effettua pi\`u operazioni di $decreaseKey()$ che di $extractMin()$, e nella struttura dati
+citata tale operazioni hanno rispettivamente costo computazionale $O(1)$ e $O(log_2V)$. Ci\`o
+avrebbe comportato un miglioramento nel caso in cui ci fossero stati molti archi, avendo un costo
+asintotico pari a $O(Vlog_2V +E)$.

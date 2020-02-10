@@ -29,10 +29,9 @@ Se esiste un wormhole nell'albero dei cammini minimi radicato in S,
 allora si procede ad una seconda applicazione di Dijkstra, usando
 come sorgente il nodo di destinazione. Se questi due wormhole
 sono diversi allora si calcola il percorso minimo tra i due e si
-aggiunge un arco simbolico di peso 1.
+aggiunge un arco simbolico di peso 1.\newline
 
 
-\BlankLine
 \IncMargin{1.5em}
 \begin{algorithm}[H]
 \setstretch{1.1}
@@ -47,9 +46,9 @@ aggiunge un arco simbolico di peso 1.
 \BlankLine
 \emph{$w_1$ = apply Dijkstra from $S$ and save first wormhole encountered}\;
 $distance = printPath(s, d)$\;
-\If{\exists \ $w_1$}{
+\If{$\exists \ w_1$}{
     \emph{$w_2$ = apply Dijkstra from $D$ and save first wormhole encountered}\;
-    \If{\exists \ w2 \ {\bf and} \ w1 \neq w2}{
+    \If{$\exists \ w2 \ {\bf and} \ w1 \neq w2$}{
         $dw_1$ = $printPath(s, w_1)$\;
         $dw_2$ = $printPath(w_2, d)$\;
         $d_{dw_1+dw_2}$ = $dw_1 + 1 + dw_2$\;

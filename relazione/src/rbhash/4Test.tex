@@ -1,0 +1,63 @@
+\def\baselinestretch{1}
+\section{Test e risultati}
+\def\baselinestretch{1.66}
+\thispagestyle{headings}
+
+\subsection{Test effettuati}
+Nei test effettuati sono stai usati due file e tramite funzioni di debug per 
+la stampa si \`e cercato di verificare per quanto possibile l'inserimento
+e cancellazione dell'albero red black. Di seguito verranno mostrati 
+alcuni esempi estrapolati dalla shell.\newpage
+
+\begin{lstlisting}[caption={File di prova con chiavi duplicate},captionpos=b]
+123:321:hello
+2:4:54
+1:4:test
+2:4:h&:o
+2:12:asd
+\end{lstlisting}
+
+Notare come nell'output di stampa della struttura dati non vi sono presenti le chiavi
+duplicate. Inoltre si \`e scelto di stampare tramite una \textbf{visita inorder} per mostrare
+come l'albero red black sia un albero binario.
+\begin{minted}{bash}
+$ ./rbhash inputs/asd
+
+**** MENU ****
+ 1. Insert
+ 2. Remove
+ 3. Query
+ 4. Print
+ 0. Exit
+>_ 4
+
+ '(1) :
+        [4] : test'
+
+ (2) :
+        [4] : 54
+        [12] : asd
+
+'(123) :
+        [321] : hello'
+        
+\end{minted}
+
+L'eliminazione della radice, ovvero il nodo nero $2$ comporta un bilanciamento con
+conseguente ricolorazione di nodi.
+
+
+\begin{minted}{bash}
+*****WARNING*****
+Insert tuple (key1:key2:data) to delete -> 2:4:54
+
+*****WARNING*****
+Insert tuple (key1:key2:data) to delete -> 2:12:asd
+
+
+'(1) :
+        [4] : test'
+(123) :
+        [321] : hello
+
+\end{minted}

@@ -1,0 +1,73 @@
+\def\baselinestretch{1}
+\chapter{Albero red-black di hash table}
+\def\baselinestretch{1.66}
+\thispagestyle{headings}
+
+\def\baselinestretch{1}
+\section{Descrizione problema}
+\def\baselinestretch{1.66}
+\thispagestyle{headings}
+
+Il problema in analisi prevede di creare una struttura dati, in C++, che d'ora in avanti chiameremo
+\textbf{red-black hash}, in grado di immagazzinare delle stringhe alfanumeriche. Tale struttura
+\`e l'unione di un albero binario di ricerca bilanciato, \textbf{albero rosso-nero} o \textbf{albero
+red-black}, e delle \textbf{hash table}: all'interno di ogni nodo di tale albero,
+vi \`e presente una hash table, struttura dati che associa per ogni chiave un singolo valore, al cui
+interno sono presenti delle stringhe. La traccia prevedeva di poter effettuare operazioni
+\textbf{C.R.D.}\footnote{Create Retrieve Delete. Operazioni tipiche delle basi di dati, ma senza la
+possibilit\`a di effettuare Updates.} su tuple nel formato: \verb|chiave1:chiave2:stringa| . 
+La chiave 1 indicizza un nodo dell'albero red black, il quale puntando ad una hash
+table utilizza la chiave 2 per associare la stringa.
+Vi \`e quindi una relazione \verb|1:1| per i nodi dell'albero e l'hash table, e \verb|1:M| tra l'hash table
+e le stringhe, dove \textbf{M} \`e la dimensione massima dell'hash table.
+
+\def\baselinestretch{1}
+\section{Descrizione strutture dati}
+\def\baselinestretch{1.66}
+\thispagestyle{headings}
+\subsection{Alberi binari di ricerca}
+\indent Gli \textbf{alberi binari di ricerca} sono delle strutture dati
+ che immagazzinano dati in un albero avente in ogni nodo due 
+ figli. Gli \textbf{ABR} (o in inglese BST) godono della seguente propriet\`a:
+ $\forall \ x \in \ $BST$ :\ key(x.left) \leq key(x) < key(x.right)$. 
+ Ovvero ogni nodo in un ABR ha come valore della chiave un valore
+ maggiore del figlio sinistro ma minore di quello destro.
+ \newline Ci\`o assicura operazioni in una complessit\`a 
+ \textbf{logarimtica} data dalla profondit\`a dell'albero.
+ Il problema sorge nel caso in cui avvengono cancellazioni
+ sbagliate o inserimenti sbagliati che seppur mantengono
+ la propriet\`a degli ABR, degradano tale albero in una lista concatenata
+ compromettendo le operazioni di inserimento, cancellazione
+ e ricerca ad avere complessit\`a lineare.
+
+\subsection{Alberi Red-Black}
+Gli alberi red black sono degli alberi binari di ricerca
+\textbf{ autobilancianti }. Ogni volta che si inserisce un nuovo 
+nodo, o lo 
+si cancella si effettuano delle operazioni per bilanciare 
+l'albero. Gli alberi rosso neri posseggono \textbf{5 propriet\`a} 
+utili
+ai metodi di supporto $insertFix()$ e $deleteFix()$ per garantire che le complessit\`a
+peggiori abbiano al pi\`u come valore l'altezza dell'albero, ovvero $O(log_2n)$. 
+I metodi di supporto all'inserimento e alla cancellazione fanno uso delle rotazioni di un nodo,
+operazione che permette di compattare l'albero e garantire il corretto bilanciamento.
+Di seguito verranno elencate tali propriet\`a:
+\begin{itemize}
+    \item ogni nodo \`e rosso o nero;
+    \item la radice \`e nera;
+    \item ogni foglia \`e nera;
+    \item se un nodo \`e rosso, allora entrambi i suoi figli sono neri;
+    \item per ogni nodo, tutti i cammini semplici che vanno dal nodo alle foglie sue discendenti
+    contengono lo stesso numero di nodi neri.
+\end{itemize}
+
+\subsection{Hash Table ad indirizzamento aperto}
+Le \textbf{Hash Table}, o hash map, sono delle strutture dati che permettono di associare ad una
+chiave un singolo valore. Precisamente ad ogni chiave va applicata una funzione detta funzione
+di hashing che calcoler\`a un indice. Pu\`o capitare per\`o che una funzione hash applicata su chiavi diverse 
+indicizzi celle simili dell'hashtable, per tanto bisogna gestire queste \textit{collisioni}.
+La tavola hash realizzata \`e del tipo a \textbf{indirizzamento aperto}, ovvero non facendo
+uso dei puntatori si \textit{ispeziona} l'hashtable fino a incontrare una posizione libera,
+se presente. Il metodo di ispezione scelto \`e quello del \textbf{doppio hashing}: rispetto
+ad altre ispezioni, quella del doppio hashing trova una posizione in modo pi\`u veloce.
+Nei capitoli successivi vedremo nel dettaglio il funzionamento.
