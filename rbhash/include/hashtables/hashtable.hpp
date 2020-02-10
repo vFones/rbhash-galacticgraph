@@ -1,11 +1,12 @@
 #ifndef _HASHTABLE_HPP_
 #define _HASHTABLE_HPP_
 
-#include <nodes/genericnode.hpp>
-#include <hashtables/hashfunc.hpp>
-
 #include <limits>
 #include <vector>
+#include <cmath>
+
+#include <nodes/genericnode.hpp>
+
 
 /*! Enum for state of single HashNode */
 enum state { EMPTY, OCCUPIED, DELETED };
@@ -16,18 +17,21 @@ enum state { EMPTY, OCCUPIED, DELETED };
  * @tparam HashFunction is the class that make the hashfunction
  *  to compute the index of node
  */
-template <typename D, class HF = HashFunction>
+template <typename D>
 class HashTable {
   private:
     std::vector<state> *_S; // array of states
     std::vector<GenericNode<D>*> *_T; // effective hashtable
-    HF _h;
+    
+    // using fmod -> double % int
+    int _h1(double &k){return static_cast<int>(std::fmod(k, this->_m));} 
+    int _h2(double &k){return 1 + static_cast<int>(std::fmod(k, this->_m-1));}
    
     int _m; // default capacity
     int _occ = 0; // number of occupied nodes
 
   public:
-    HashTable( int size = 285700 );
+    HashTable( int size = 701 );
     ~HashTable();
 
     /**
@@ -92,11 +96,12 @@ class HashTable {
      * @param c HashTable<D>
      * @return std::ostream&
      */
-    friend std::ostream& operator<<(std::ostream &Str, HashTable<D, HF> *c) {
+    friend std::ostream& operator<<(std::ostream &Str, HashTable<D> *c) {
       // put every HashNode<D> that there isn't EMPTY or DELETED
       for(auto i = 0; i < c->getSize(); i++)
         if(c->getState(i) == OCCUPIED)
           Str<<"\t"<<c->getNode(i);
+      Str<<"\n\n";
       return Str;
     };
 };
