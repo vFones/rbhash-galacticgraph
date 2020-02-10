@@ -112,7 +112,9 @@ bool Parser::remove(std::string str) {
 
 void Parser::print(){
   auto r = this->_rh->getRBHashTree()->getRoot();
-  if(r != this->_rh->getRBHashTree()->getNil())
-    std::cout<<"Root:\n"<<this->_rh->getRBHashTree()->getRoot()<<"\n";
+  IFDEBUG {
+    if(r != this->_rh->getRBHashTree()->getNil())
+      std::cout<<"Root:\n"<<this->_rh->getRBHashTree()->getRoot()<<"\n";
+  }
   std::cout<<"\n"<<this->_rh<<"\n";
 }

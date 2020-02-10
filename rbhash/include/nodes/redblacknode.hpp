@@ -28,14 +28,14 @@ class RedBlackNode : public AbstractBinaryNode<D, RedBlackNode<D>>, public Color
     friend std::ostream& operator<<(std::ostream &Str, RedBlackNode<D> &c) {
       if(c.isRed())
         Str<<"\033[31m";
-      Str<<"("<<c.getKey()<<") : \033[0m\n"<<c.getData();
+      Str<<"("<<c.getKey()<<") : \n"<<c.getData()<<"\033[0m";
       return Str;
     }
 
     friend std::ostream& operator<<(std::ostream &Str, RedBlackNode<D> *c) {
       if(c->isRed())
         Str<<"\033[31m";
-      Str<<"("<<c->getKey()<<") : \033[0m\n"<<c->getData();
+      Str<<"("<<c->getKey()<<") : \n"<<c->getData()<<"\033[0m";
       return Str;
     }
 };
