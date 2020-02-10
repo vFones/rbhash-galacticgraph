@@ -1,9 +1,8 @@
 #ifndef _PARSER_HPP_
 #define _PARSER_HPP_
 
-#include <redblackhash.hpp>
 #include <string>
-
+#include <redblackhash.hpp>
 
 /**
  * @brief Parser for Red Black Hashtable

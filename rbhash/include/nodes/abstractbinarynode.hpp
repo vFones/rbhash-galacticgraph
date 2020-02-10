@@ -1,8 +1,9 @@
 #ifndef _IBNODE_HPP_
 #define _IBNODE_HPP_
 
-#include <nodes/genericnode.hpp>
 #include <iostream>
+
+#include <nodes/genericnode.hpp>
 
 /**
  * @brief AbstractBinaryNode

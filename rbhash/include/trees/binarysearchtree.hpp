@@ -1,6 +1,7 @@
 #ifndef _BINARYSEARCHTREE_HPP_
 #define _BINARYSEARCHTREE_HPP_
 
+
 /**
  * @brief Binary Search Tree 
  * @details BST inherites from a Generic tree.
