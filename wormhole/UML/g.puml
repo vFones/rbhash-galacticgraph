@@ -1,0 +1,69 @@
+@startuml galacticgraph.puml
+
+skinparam class {
+	BackgroundColor WhiteSmoke
+	ArrowColor Grey
+	BorderColor DarkOrange
+}
+hide class circle
+
+class Item < Data = void * > {
+  {field} - _key : double
+  {field} - _data : Data
+
+  + Item(double k)
+  + Item(double k, Data d)
+  + setKey(double k)
+  + getKey() : double
+  + setData(Data &data)
+  + getData() : Data
+}
+
+class Vertex {
+  {field} - _d : double
+  {field} - *_prev : Vertex
+  {field} - _adjmap : unordered_map< Vertex *, int >
+
+  + Vertex(int key)
+  + ~Vertex()
+  + setParent(Vertex p)
+  + getParent() : Vertex*
+  + setD(double d)
+  + getD() : double
+  + addEdge(WeightedVertex u)
+  + printAdj()
+  + getAdj() : unordered_map< Vertex *, int >
+
+  + operator== (Vertex &other) : bool
+  + operator!= (Vertex &other) : bool
+  +<<friend>> std::ostream& operator<<(std::ostream &Str, Vertex *v)
+}
+
+class Graph {
+    - <<const>> _V : integer
+    - *_vertices : Vertex []
+
+    + Graph(int vertices)
+    + ~Graph()
+    - void initSingleSource(Vertex *s)
+    - void relax(Vertex *u, Vertex *v, int w, MinPriorityQueue<Vertex *> *Q)
+    
+    + getVertices() : Vertex []    
+    + getVertex(int i) : Vertex*
+    + printGraph()
+    + addEdge(Vertex *a, Vertex *b, int weight)
+    + dijkstra(Vertex *s)
+    + dijkstra(Vertex *s, lambda function) : Vertex *
+
+    + getPath(Vertex *s, Vertex *d) : Vertex []
+    + printPath(Vertex *s, Vertex *d, bool print, bool reverse) : int
+    + printPath(Vertex *s, Vertex *d, Vertex [] &path, bool print, bool reverse) : int
+}
+note bottom: dijkstra redefinition: \nlambda function for stopping criteria,\nand last vertex extracted returned
+
+Item <|-right- Vertex 
+Vertex --* Graph
+
+MinPriorityQueue -right- Graph : use
+
+@enduml

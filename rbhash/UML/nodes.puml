@@ -1,0 +1,82 @@
+@startuml nodes.puml
+
+skinparam class {
+	BackgroundColor WhiteSmoke
+	ArrowColor Grey
+	BorderColor DarkOrange
+}
+hide class circle
+
+class Item < Data > {
+  {field} - _key : double
+  {field} - _data : Data
+
+  + Item(double k)
+  + Item(double k, Data d)
+  + setKey(double k)
+  + getKey() : double
+  + setData(Data &data)
+  + getData() : Data
+}
+
+class GenericNode < Data > {
+  + GenericNode()
+  + GenericNode(double &k)
+  + GenericNode(double &k, D &d)
+  + ~GenericNode()
+  + toString() : string
+  + <<friend>> operator<<(ostream &Str, GenericNode &c) : ostream&    
+  + <<friend>> operator<<(ostream &Str, GenericNode *c) : ostream&
+}
+
+abstract AbstractBinaryNode < Data, Node > {
+  {field} # Node* _parent
+  {field} # Node* _left
+  {field} # Node* _right
+
+  + AbstractBinaryNode()
+  + AbstractBinaryNode(double &k)
+  + AbstractBinaryNode(double &k, D &d)
+  {abstract} + ~AbstractBinaryNode()
+
+  + getParent() : Node*
+  + setParent(Node* parent)
+  + getRight() : Node*
+  + setRight(Node* right)
+  + getLeft() : Node*
+  + setLeft(Node* left)
+}
+
+class RedBlackNode < Data > {
+  + RedBlackNode()
+  + RedBlackNode(double &k)
+  + RedBlackNode(double &k, Data &d)
+  + ~RedBlackNode()
+  + <<friend>> operator<<(ostream &Str, RedblackNode *c) : ostream&
+  + <<friend>> operator<<(ostream &Str, RedblackNode &c) : ostream&
+}
+
+class Color {
+  {field} - colours _color;
+  + Color()
+  + Color(colours c)
+  + getColor() : colours 
+  + setColor(colours c)
+  + setBlack()
+  + isBlack() : bool
+  + setRed()
+  + isRed() : bool
+  +<<friend>> operator<<(ostream &Str, colours &c) : ostream&
+}
+
+enum colours{
+  + RED 
+  + BLACK
+}
+
+Item <|-down- GenericNode
+GenericNode <|-- AbstractBinaryNode
+AbstractBinaryNode <|-- RedBlackNode
+colours --* Color
+Color <|-- RedBlackNode
+@enduml

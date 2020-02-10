@@ -1,0 +1,39 @@
+@startuml rbhash.puml
+
+skinparam class {
+	BackgroundColor WhiteSmoke
+	ArrowColor Grey
+	BorderColor DarkOrange
+}
+hide class circle
+
+class RedBlackHash < Data > {
+  {field} - _rb : RedBlackTree<HashTable<D> *> *
+  {field} - _size : int
+
+  + RedBlackHash(int s)
+  + ~RedBlackHash()
+  + *getRBHashTree() : RedBlackTree<HashTable<D> *> *
+  + insert(int k1, int k2, D d) : bool
+  + search(int k1, int k2, D d) : bool
+  + remove(int k1, int k2, D d) : bool
+  + <<friend>> operator<<(ostream &Str, RedBlackHash<D> *rh) : ostream&
+}
+
+class Parser {
+  {field} - _hashsize : int 
+  {field} - _filename : string
+  {field} - _rh : RedBlackHash<std::string> *
+  + Parser(const string fn, int hashsize);
+  + ~Parser()
+  + insert(string str) : bool
+  + search(string str) : bool
+  + remove(string str) : bool
+  + print()
+}
+
+RedBlackHash *-- RedBlackTree
+RedBlackHash *-- HashTable
+Parser *-- RedBlackHash
+
+@enduml

@@ -1,0 +1,66 @@
+@startuml galacticgraph.puml
+
+skinparam class {
+	BackgroundColor WhiteSmoke
+	ArrowColor Grey
+	BorderColor DarkOrange
+}
+hide class circle
+
+class MinPriorityQueue< Data = Vertex > {
+  {field} - A : MinHeap<Data>
+  + MinPriorityQueue()
+  + ~MinPriorityQueue()
+  + insert(T el, int key)
+  + minimum() : <Data, integer>
+  + extractMin() : <Data, integer>
+  + decreasePriority(Data el, integer key)
+  + print()
+  + printAll()
+  + getPQSize()
+}
+
+class MinHeap< Data = Vertex > {
+  + buildHeap()
+  + heapify(integer i)
+  + heapSort()
+}
+
+class Heap< Data = Vertex > {
+  {field} - heapSize : integer
+  {field} # deque [] A : < Data , integer >
+
+  # parent(integer i) : integer
+  # left(integer i) : integer
+  # right(integer i) : integer
+
+  + Heap()
+  + ~Heap()
+  + find(T el) : integer
+  + insert(T el, integer key)
+
+  + <Data, integer> at(integer i)
+  + set(integer i, <Data, integer> el)
+  + swap(integer i, integer j)
+  + popBack()
+  + resize(integer x)
+
+  + getHeapSize()
+  + setHeapSize(integer s)
+  + incrHeapSize()
+  + decrHeapSize()
+
+  + printHeap()
+  + printA()
+  
+  + postOrder(integer index)
+
+  {abstract} +  buildHeap()
+  {abstract} +  heapify(integer i)
+  {abstract} +  heapSort()
+}
+
+MinHeap -left-* MinPriorityQueue
+Heap <|-right- MinHeap 
+
+@enduml

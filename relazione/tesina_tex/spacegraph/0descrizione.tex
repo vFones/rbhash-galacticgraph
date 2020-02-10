@@ -1,0 +1,58 @@
+\def\baselinestretch{1}
+\chapter{ Viaggi Galattici }
+\def\baselinestretch{1.66}
+\thispagestyle{headings}
+\section{Descrizione problema}
+
+Il problema in esame prevede di trovare, in un \textbf{grafo
+non orientato}, il \textbf{percorso pi\`u breve} tra due nodi
+specifici, ovvero quel percorso tale per cui la somma dei
+costi associati all' attraversamento degli archi che
+collegano un punto A ad un punto B \`e minima \footnote{
+Definizione formale del \textbf{cammino minimo} nella teoria
+dei Grafi}. Il problema prevede la possibilit\`a
+di poter usare alcuni nodi speciali, detti \textbf{wormholes}:
+ogni wormhole nel grafo \`e collegato ad ogni altro wormhole,
+inoltre il costo di percorrenza wormhole - wormhole ha peso 1.
+
+\section{Descrizione strutture dati}
+
+\subsection{Grafi}
+Le informazioni circa il nome, ovvero la chiave numerica usata
+come identificativo univoco, ed eventuali dati satelliti, sono
+salvate in una struttura dati \textbf{nodo}, o \textbf{vertice}. Per salvare i percorsi dei cammini minimi, ogni vertice mantiene un riferimento al nodo precedente nel cammino.
+La struttura dati in cui vengono salvati i nodi facenti parte
+del problema, \`e un \textbf{grafo non orientato}. Per implementare
+tale struttura dati si \`e scelto di mantenere per ogni
+vertice un listato contenente un riferimento agli altri
+nodi adiacenti ed il relativo peso numerico atto a riportare
+il costo effettivo dell' attraversamento. Nel caso del grafo
+non orientato per ogni arco inserito non vi \`e distinzione tra
+\textbf{arco uscente} o \textbf{arco entrante}, per cui si andr\`a
+ad inserire due volte volte il sopracitato arco: un arco di peso w
+tra A e B equivale ad un arco da A a B e un altro da B ad A.
+
+\subsection{Coda di priorit\`a}
+La coda di prioti\`a \`e una particolare coda il cui criterio di inserimento
+dei vari elementi che compongono la coda \`e dato non pi\`u dall'ordine FIFO
+\footnote{FIFO: first in, first out.},
+ma dalla priorit\`a associata ad ogni elemento. Nel caso della \textbf{coda a
+priorit\`a minima }, gli elementi con priorit\`a minima saranno inseriti all' 
+inizio. L'operazione di ricerca del minimo, viene eseguita in $O(1)$, il che
+rende particolarmente utile la coda di priorit\`a nelle applicazioni che fanno
+un grande uso della suddetta operazione. Tale ADT\footnote{ADT: abstract data
+type.}, \`e usata nell' algoritmo di \textbf{Dijkstra}, per la rapida
+estrazione degli elementi con minor distanza dalla sorgente.
+\footnote{Algoritmo per il calcolo dei cammini minimi da sorgente unica.}
+
+\subsection{Min Heap Binario}
+La struttura dati su cui si basa la coda a priorit\`a minima,
+sebbene non sia la pi\`u efficiente\footnote{ Heap di Fibonacci 
+ha complessit\`a $O(1)$ nelle funzioni utili all' algoritmo}, \`e  l'
+\textbf{heap binario}, una struttura dati basata su albero binario completo
+sviluppato come vettore che gode della \textbf{propriet\`a
+heap}: nel caso del \textbf{min heap} \textit{il padre di un nodo ha come chiave 
+un valore minore di quella del figlio sinistro e destro}. \`E stata scelta
+questa struttura dati rispetto ad un \textbf{Heap di Fibonacci}, nonostante 
+abbia complessit\`a $O(logn)$ nelle operazione di estrazione del minimo,
+inserimento e abbassamento priorit\`a, poich\'e di facile implementazione.

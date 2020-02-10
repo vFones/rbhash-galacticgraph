@@ -1,0 +1,49 @@
+@startuml trees.puml
+
+skinparam class {
+	BackgroundColor WhiteSmoke
+	ArrowColor Grey
+	BorderColor DarkOrange
+}
+hide class circle
+
+class RedBlackNode < Data > {
+}
+
+class BinarySearchTree < Data, Node > {
+  {field} # NIL : Node*
+  {field} # _root : Node*
+  {field} # transplant(Node *x, Node *y)
+  +BinarySearchTree()
+  +~BinarySearchTree()
+  {abstract} + insertNode(double &k, D &d) : Node*
+  {abstract} + deleteNode(double &k) : bool
+  + search(double &k) : Node*
+  + getNil() : Node*
+  + getRoot() : Node*
+  + setRoot(Node *x)
+  + minimum(Node *x) : Node*
+  + maximum(Node *x) : Node*
+  + successor(Node *x) : Node*
+  + predecessor(Node *x) : Node*
+  + void inorder(Node *z, void(*lambda)(Node *));
+  + void postorder(Node *z, void(*lambda)(Node *));
+}
+
+class RedBlackTree < Data, Node > {
+  - insertFix(Node *x)
+  - deleteFix(Node *x)
+  - leftRotate(Node *x)
+  - rightRotate(Node *x) 
+  + RedBlackTree()
+  + ~RedBlackTree()
+  + print()
+  + insertNode(double &k, D &d) override : Node*
+  + deleteNode(double &k) override : bool
+  + <<friend>> operator<<(ostream &Str, RedBlackTree *rb) : ostream&
+}
+
+BinarySearchTree <|-- RedBlackTree
+RedBlackTree o-- RedBlackNode
+
+@enduml

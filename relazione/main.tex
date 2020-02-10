@@ -1,0 +1,96 @@
+
+\documentclass[12pt,italian,a4paper,oneside,openright]{article}
+\usepackage{url,amsfonts,epsfig}
+\usepackage[italian]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage[format=hang,font=footnotesize]{caption}
+\usepackage{vmargin}
+\usepackage{amsmath}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{setspace}
+\usepackage[linesnumbered, boxed]{algorithm2e}
+\usepackage[bottom]{footmisc}
+\usepackage{tikz}
+
+\graphicspath{{img/}}
+\usepackage[hyperindex]{hyperref} %per l'indice interattivo
+\hypersetup{colorlinks=true, linkcolor=black} %per colorare i link
+\DeclareGraphicsRule{.jpg}{jpg}{}{} %da commentare per il PDF
+
+\begin{document}
+\pagenumbering{Roman}
+\baselineskip 1.5em
+
+{\thispagestyle{ empty }
+
+\vskip 1cm \large \centerline{\textsc{Universit\`a degli Studi di
+Napoli ``Parthenope''}}
+
+\centerline {\textsc{Dipartimento di Scienze e Tecnologie}}
+
+\centerline {\small\textsc{Corso di laurea Triennale in Informatica}}
+
+\begin{center}
+\includegraphics[scale=0.5]{logo_parthenope.png}
+\end{center}
+
+\vskip 0.5cm
+
+\large \centering {\textsc{Algoritmi e Strutture Dati e Laboratorio di Algoritmi e Strutture Dati}}
+
+\vskip 0.5cm
+
+\Large \centerline {Traccia 2}
+
+
+\vskip 4.5cm
+
+
+\large
+\begin{minipage}[t]{7cm}
+\textsc{Docenti}
+
+Prof. Alessio Ferone\newline
+Prof. Francesco Camastra
+
+\end{minipage}
+\hfill
+\begin{minipage}[t]{6cm}
+\hfill \textsc{Candidato}
+
+\hfill Vittorio Fones 0124/1384
+\end{minipage}
+
+\vskip 2.0 cm \Large \centerline {Anno Accademico 2019-2020}
+\vfill \eject}
+
+% fine frontespizio
+
+\markboth{Indice}{Indice}
+\tableofcontents
+\listoffigures
+\newpage
+
+\pagenumbering{arabic}
+\input{tesina_tex/rbhash/0descrizione.tex}
+\input{tesina_tex/rbhash/1IO.tex}
+\input{tesina_tex/rbhash/2Core.tex}
+\input{tesina_tex/rbhash/3Complexity.tex}
+\input{tesina_tex/rbhash/4Test.tex}
+\input{tesina_tex/rbhash/5Source.tex}
+
+\input{tesina_tex/spacegraph/0descrizione.tex}
+\input{tesina_tex/spacegraph/1IO.tex}
+\input{tesina_tex/spacegraph/2Core.tex}
+\input{tesina_tex/spacegraph/3Complexity.tex}
+\input{tesina_tex/spacegraph/4Test.tex}
+\input{tesina_tex/spacegraph/5Source.tex}
+
+\newpage
+\pagestyle{plain}
+
+
+\end{document}

@@ -1,0 +1,36 @@
+\def\baselinestretch{1}
+\chapter{ Albero red-black di hash table }
+\def\baselinestretch{1.66}
+\thispagestyle{headings}
+
+\def\baselinestretch{1}
+\section{Descrizione problema}
+\def\baselinestretch{1.66}
+\thispagestyle{headings}
+
+Il problema in analisi prevede di creare una struttura dati, che d'ora in avanti chiameremo
+\textbf{red-black hash}, in grado di immagazzinare delle stringhe alfanumeriche. Tale struttura
+\`e l'unione di un albero binario di ricerca bilanciato, \textbf{albero rosso-nero} o \textbf{albero
+red-black}, e delle \textbf{hash table}: in particolar modo, all'interno di ogni nodo di tale albero,
+vi \`e presente una hash table, struttura dati che associa per ogni chiave un singolo valore, al cui
+interno sono presenti delle stringhe. La traccia prevedeva di poter effettuare operazioni
+\textbf{C.R.D.}\footnote{Create Retrieve Delete. Operazioni tipiche delle basi di dati, ma senza la
+possibilit\`a di effettuare Updates.} su tuple nel formato: \verb|chiave1:chiave2:stringa| . 
+In particolar modo: la chiave 1 indicizza un nodo dell'albero red black, il quale puntando ad una hash
+table utilizza la chiave 2 per associare la stringa.
+Vi \`e quindi una relazione \verb|1:1| per i nodi dell'albero e l'hash table, e \verb|1:M| tra l'hash table
+e le stringhe, dove \textbf{M} \`e la dimensione massima dell'hash table.
+
+\def\baselinestretch{1}
+\section{Descrizione strutture dati}
+\def\baselinestretch{1.66}
+\thispagestyle{headings}
+
+\subsection{Alberi binari di ricerca}
+
+\subsection{Alberi Red-Black}
+
+\subsection{Hash Table}
+
+\subsection{Hash Table ad indirizzamento aperto}
+

@@ -1,0 +1,32 @@
+@startuml galacticgraph.puml
+
+skinparam class {
+	BackgroundColor WhiteSmoke
+	ArrowColor Grey
+	BorderColor DarkOrange
+}
+hide class circle
+
+class GalacticGraph {
+  -  _wormholes : unordered_map< Vertex *, int >
+  - isWormhole(Vertex *x) : bool
+    
+  + GalacticGraph(int V)
+  + galacticDijkstra(Vertex *s, Vertex *d)
+  + addWormhole(Vertex *w)
+}
+
+class Loader {
+  - _filename : string
+  - _G : GalacticGraph *
+  
+  +Loader(const string fn)
+  +~Loader()
+  +getGraph() : GalacticGraph *
+}
+
+Graph <|-- GalacticGraph
+
+Loader -right- GalacticGraph : use
+
+@enduml

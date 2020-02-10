@@ -1,0 +1,33 @@
+\def\baselinestretch{1}
+\section{Formato di input e di output}
+\def\baselinestretch{1.66}
+\thispagestyle{headings}
+
+\subsection{Input}
+I dati in input del problema sono:
+\begin{itemize}
+    \item V: numero intero di Vertici del grafo
+    \item E: numero intero di Archi del grafo
+    \item W: numero intero di Wormholes presenti nel grafo
+    \item Tuple rappresentante archi: NodoA, NodoB, Peso
+    \footnote{ndr: NodoA e NodoB sono le chiavi intere dei vertici
+    e Peso \`e un intero usato per rappresentare il peso di tale
+    arco.}
+\end{itemize}
+Tali dati sono immagazzinati in un file di testo non binario
+contenente nel primo rigo i primi tre dati elencati, mentre nei
+successivi sono presenti le \textbf{tuple}.
+Per rappresentare i wormhole il programma prende gli \textbf{
+ultimi W NodiB} contenuti nel file e li va a salvare in un
+vettore di vertici.
+
+\subsection{Output}
+Il programma sviluppato restituisce in output i nodi che collegano
+la coppia \textbf{sorgente - destinazione} nel minor "tempo" possibile 
+e il relativo costo di tale cammino minino, \textbf{se esiste}:
+pu\`o capitare, come vedremo nel paragrafo \textit{"Test effettuati"},
+che il grafo non sia connesso e che il nodo destinazione sia raggiungibile 
+solo attraverso i vertici di tipo wormhole.
+Inoltre il programma restituisce, il cammino minimo (vertici da attraversare
+e costo totale) facendo uso dei nodi speciali wormhole. L'output secondario
+pu\`o mancare nel caso in cui non si incontrino wormhole, oppure il wormhole di partenza \`e uguale a quello di destinazione.
