@@ -109,6 +109,14 @@ int HashTable<D>::remove(double &k) {
 }
 
 
+template <typename D>
+void HashTable<D>::printKeys() {
+  for(auto i = 0; i < this->_m; i++)
+    if(this->_S->at(i) == OCCUPIED)
+      std::cout<<this->_T->at(i)->getKey()<<" ";
+  std::cout<<"\n\n";
+}
+
 // return the current quantity of hashnodes
 template <typename D>
 int HashTable<D>::getQuantity() {

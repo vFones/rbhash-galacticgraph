@@ -91,6 +91,11 @@ class HashTable {
     int remove(double &k);
 
     /**
+     * @brief print all node's keys;
+     */
+    void printKeys();
+    
+    /**
      * @brief Override of operator<< for print
      * @param Str ostream obj
      * @param c HashTable<D>
