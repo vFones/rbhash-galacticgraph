@@ -15,10 +15,8 @@
 \renewcommand{\thealgocf}{}
 \usepackage[bottom]{footmisc}
 \usepackage{xcolor}
-\usepackage{listings}
-\lstset{escapeinside={<@}{@>}}
-\usepackage{minted}
-
+\usepackage{listing}
+\usepackage[chapter]{minted}
 \usepackage{etoolbox}
 \apptocmd{\thebibliography}{\raggedright}{}{}
 
@@ -75,29 +73,35 @@
 \pagenumbering{Roman}
 \baselineskip 1.5em
 
+
+\renewcommand\listingscaption{Codice}
+
+
 \markboth{Indice}{Indice}
 \tableofcontents
 \listoffigures
+\renewcommand*{\listlistingname}{Indice dei codici sorgente}
+\listoflistings
 \newpage
 
 \pagenumbering{arabic}
 \part{}
-\input{tesina_tex/rbhash/0descrizione.tex}\newpage
-\input{tesina_tex/rbhash/1IO.tex}\newpage
-\input{tesina_tex/rbhash/2Core.tex}\newpage
-\input{tesina_tex/rbhash/3Complexity.tex}\newpage
-\input{tesina_tex/rbhash/4Test.tex}\newpage
-\input{tesina_tex/rbhash/5Source.tex}\newpage
+\input{src/rbhash/0descrizione.tex}\newpage
+\input{src/rbhash/1IO.tex}\newpage
+\input{src/rbhash/2Core.tex}\newpage
+\input{src/rbhash/3Complexity.tex}
+\input{src/rbhash/4Test.tex}\newpage
+\input{src/rbhash/5Source.tex}\newpage
 
 \part{}
-\input{tesina_tex/spacegraph/0descrizione.tex}\newpage
-\input{tesina_tex/spacegraph/1IO.tex}\newpage
-\input{tesina_tex/spacegraph/2Core.tex}\newpage
-\input{tesina_tex/spacegraph/3Complexity.tex}\newpage
-\input{tesina_tex/spacegraph/4Test.tex}\newpage
-\input{tesina_tex/spacegraph/5Source.tex}\newpage
+\input{src/spacegraph/0descrizione.tex}\newpage
+\input{src/spacegraph/1IO.tex}\newpage
+\input{src/spacegraph/2Core.tex}\newpage
+\input{src/spacegraph/3Complexity.tex}\newpage
+\input{src/spacegraph/4Test.tex}\newpage
+\input{src/spacegraph/5Source.tex}\newpage
 \newpage
-\input{tesina_tex/bibliografia.tex}
+\input{src/bibliografia.tex}
 \newpage
     
 

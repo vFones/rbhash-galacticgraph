@@ -12,12 +12,11 @@ un nodo adiacente pi\`u vicino a quello analizzato. Per
 definizione della sottostruttura ottima di un cammino minimo, il
 \textbf{primo wormhole} aggiunto nell'albero dei cammini minimi, \`e
 quello che si pu\`o raggiungere pi\`u velocemente da una data
-sorgente. Per tanto \`e stato modificato Dijkstra per salvare i womrhole che
+sorgente. Per tanto \`e stato modificato Dijkstra per salvare i wormhole che
 incontra durante la creazione del cammino, e per fermarsi una volta raggiunta la destinazione.\newline
 \indent L'algoritmo che verr\`a mostrato di seguito \`e il cuore
 del programma: in input riceve i nodi sorgente e destinazione
-e in fase di elaborazione restituisce \textbf{i cammini minimi}
-dal nodo sorgente a quello destinazione. \`E stato usato
+e in fase di elaborazione restituisce \textbf{i cammini minimi}. \`E stato usato
 il plurale in quanto, potrebbe esserci un secondo cammino
 che fa uso dei wormhole, o viceversa se il grafo non
 \`e connesso, esserci solamente il cammino con i wormhole.\newline
@@ -78,12 +77,12 @@ oggetto Vertex, mostrato di seguito.
 
 \newpage
 \subsubsection{Grafo e Vertici}
-\indent Ogni elemento del grafo, i \textbf{Vertici}, sono dei nodi che ereditano da un generico "oggetto"
+\indent Ogni elemento del grafo, i \textbf{vertici}, sono dei nodi che ereditano da un generico "oggetto"
 \textbf{Item} la possibilit\`a di inserire Dati indentificati da una chiave. A tal proposito non avendo
 bisogno di conservare nessun dato si \`e deciso di usare come parametro del template un \textbf{puntatore
 a void}. Ogni vertice ha una mappatura con i vertici \textbf{adiacenti} (realizzata tramite un hashtable
 di tipo unordered), un riferimento al padre nell' albero dei cammini minimi, e la distanza dal nodo radice.
-\newline\indent Il grafo possiede un vettore di puntatori a vertici e ha metodi per creare un albero
+\newline\indent Il \textbf{grafo} possiede un vettore di puntatori a vertici e ha metodi per creare un albero
 dei cammini minimi (Dijkstra), restituire o stampare il percorso da una sorgente e una destinazione.
 Il metodo dijkstra \`e stato ridefinito in modo tale da poter eseguire operazioni aggiuntive alla fine
 del rilassamento di un nodo estratto dalla coda: si pu\`o decidere di usare una funzione lambda oppure un
@@ -101,9 +100,9 @@ la connessione con la min priority queue.
 
 \newpage
 \subsubsection{Parser e Grafo galattico}
-\indent Il main del programma usera la classe Parser per creare e instanziare correttamente un oggetto di
-tipo GalacticGraph. Tale classe altro non \`e che una specializzazione del grafo base, con l'aggiunta
-di una mappatura dei wormhole del sistema caricato e dell' algortimo Galactic Dijkstra (par. \ref{gg}).
+\indent Il main del programma usera la classe \textbf{Loader} per creare e instanziare correttamente un oggetto di
+tipo \textbf{GalacticGraph}. Tale classe altro non \`e che una specializzazione del grafo base, con l'aggiunta
+di una mappatura dei wormhole del grafo caricato dal Loader e dell' algortimo Galactic Dijkstra (par. \ref{gg}).
 \begin{center}
 \includegraphics[scale=0.9]{tesina_tex/spacegraph/2img/gg.eps}
 \captionof{figure}{Loader e Grago galattico}

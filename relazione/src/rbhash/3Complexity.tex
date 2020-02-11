@@ -15,10 +15,10 @@ In tal modo il doppio hashing usa $O(m^2)$ sequenze di ispezione,
 perch\'e ogni coppia ($h_1(k), h_2(k)$) produce una distinta sequenza di ispezione.
 Le \textbf{hashtable nel caso migliore}, ovvero non avendo nessuna collisione inseriscono,
 cercano e cancellano i dati in $O(1)$.
-Nel caso \textbf{peggiore} avremo un tempo massimo di $O(n)$,
+Nel caso \textbf{peggiore} avremo un tempo massimo di $O(m)$,
 dovuto alla scansione lineare di tutta la tavola di hash: ci\`o \`e  dovuto alla hashtable che si riempie
 cio\`e quando il \textbf{ fattore di carico} (rapporto di elementi
-inseriti e size della tavola) $\alpha\rightarrow 1$.\newline
+inseriti e size della tavola) $\alpha$ tende a $1$.\newline
 
 \indent Nella struttura dati \textbf{red-black hash} quando effettuiamo un \textbf{inserimento} andremo prima
 ad effettuare una ricerca nell'albero rosso nero ($O(log_2n)$):
@@ -36,9 +36,9 @@ L'operazione di \textbf{ricerca} impiega $\mathbf{O(m+log_2n)}$ nel caso in cui 
 con chiave 1 e la ricerca nella tavola hash restituisca l'indice in un tempo lineare; l'uso di tale indice 
 serve per accedere al dato in $O(1)$. Nel caso migliore invece la ricerca avviene in
 $\mathbf{O(log_2n)}$.\newline
-La \textbf{cancellazione} ha complessit\`a simili all'inserimento: si effettua una ricerca e
+La \textbf{cancellazione} ha complessit\`a uguali alle precendenti: si effettua una ricerca e
 se l'hashtable ha solo un elemento allora si provvede a cancellare l'intero nodo dall'albero, altrimenti
 si cancella solamente nell'hashtable: pertanto $\mathbf{O(log_2n)}$ oppure $\mathbf{O(m+log_2n)}$.
 \newline
 Tramite questo prospetto possiamo affermare che i casi peggiori sono dettati dalla tavola di hash e dipende
-tutto dal suo fattore di carico.\newline
+tutto dal suo fattore di carico.

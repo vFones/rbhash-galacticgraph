@@ -4,7 +4,7 @@
 \thispagestyle{headings}
 \subsection{Pseudo codice}
 
-L'insertimento nella struttura dati creata va effettuare prima una ricerca
+\textbf{L'insertimento} nella struttura dati creata va effettuare prima una ricerca
 del nodo di chiave $key1$. Se dovesse riscontrare un esito negativo si procede
 alla allocazione di un hashtable e un nuovo nodo. In caso contrario si procede alla ricerca
 di una cella della tavola di hash con la $key2$, se anche questa ricerca restituisce un esito
@@ -20,7 +20,7 @@ negativo allora si procede con l'inserimento.
 \SetKwInOut{Input}{input}\SetKwInOut{Result}{result}
 \SetKwIF{If}{ElseIf}{Else}{if}{:}{elif}{else:}{}
 \Input{ key1, key2, string }
-\Result{boolean}
+\Result{ $true$ if successfull, $false$ if not }
 \emph{$node$ = Search in Red Black with $key1$}\;
 \If{$\nexists \ node$} {
     \emph{new Hashtable()}\;
@@ -33,9 +33,13 @@ negativo allora si procede con l'inserimento.
         \emph{node.Hashtable.insert(key2, d)}\;
         return \emph{true}\; }}
 return \emph{false}\;
-\end{algorithm}\newpage
-\indent La ricerca controlla la correttezza delle chiavi e della stringa inserita nella tupla:
-in caso di riscontro positivo la function ritorner\`a il nodo dell'albero.
+\end{algorithm}
+
+\indent La \textbf{ricerca} controlla la correttezza delle chiavi e della stringa inserita nella tupla:
+in caso di riscontro positivo la function ritorner\`a il nodo dell'albero. Questo comportamento \`e stato previsto
+per poter evitare di effettuare una o pi\`u ricerche nella
+procedura di cancellazione.
+
 \BlankLine
 \IncMargin{1.5em}
 \begin{algorithm}[H]
@@ -55,9 +59,9 @@ in caso di riscontro positivo la function ritorner\`a il nodo dell'albero.
     }
 }
 return \emph{NIL}\;
-\end{algorithm}\newpage
-
-\indent La cancellazione di una tupla effettua una operazione di ricerca nella struttura dati.
+\end{algorithm}
+\newpage
+\indent La \textbf{cancellazione} di una tupla effettua una operazione di ricerca nella struttura dati.
 Se la ricerca ha risconto positivo allora si procede con i due casi della rimozione:
 se la chiave secondaria indicizza una hashtable in cui vi \`e presente un solo elemento, allora
 si canceller\`a l'intero nodo red black, altrimenti si procede alla normale rimozione dalla hashtable.
@@ -79,7 +83,7 @@ si canceller\`a l'intero nodo red black, altrimenti si procede alla normale rimo
     {node.Hashtable.remove(key2)\;}
     return \emph{true}\;}
 return \emph{false}\;
-\end{algorithm}\newpage
+\end{algorithm}
 
 \subsection{Diagrammi delle classe e dettagli architetturali}
 \subsubsection{Nodi Binari}
@@ -90,13 +94,13 @@ volta estende un nodo generico.\newline
 templato un generico nodo, si \`e sfruttato un particolare
 pattern strutturale chiamato \textbf{CRTP} \textit{(Curiously recurring 
 template pattern)}: una classe (e.g. ConcreteBinaryNode) eredita
-da una classe base template (e.g. AbstractBinaryNode), usando
+da una classe astratta che usa il CRTP (e.g. AbstractBinaryNode ha come parametro templato un generico nodo), usando
 come parametro di specializzazione se stessa. Il nodo concreto
 RedBlack in pi\`u implementa la classe color. Si \`e scelta tale tecnica che non porta
 miglioramenti sostanziali al codice se non quella di nascondere
 dettagli implementativi e un' indipendenza dalla rappresentazione in memoria del colore.
 \begin{center}
-\includegraphics[scale=0.6]{tesina_tex/rbhash/2img/nodes.eps}
+\includegraphics[scale=0.6]{src/rbhash/2img/nodes.eps}
 \captionof{figure}{Nodi degli alberi}
 \end{center}
 \subsubsection{Alberi}
@@ -104,19 +108,18 @@ Un albero Rosso Nero \`e un albero binario di ricerca auto
 bilanciante, per tanto si \`e scelto di estendere la classe
 BinarySearchTree ed aggiungere i metodi di supporto al bilanciamento. Inoltre due metodi virtuali (insert e delete), sono
 stati ridefiniti nell'implementazione del Red Black.
-\textit{insertNode} richiama tramite lo scope della classe
-BinarySearchTree la insert e successivamente applica il
-\textbf{fix} tipico dei red black.
+\textit{$insertNode()$} nella class RedBlackTree richiama tramite scope la insert
+di BinarySearchTree e successivamente applica il
+\textbf{fix} dei red black.
 \begin{center}
-\includegraphics[scale=0.6]{tesina_tex/rbhash/2img/trees.eps}
+\includegraphics[scale=0.7]{src/rbhash/2img/trees.eps}
 \captionof{figure}{Alberi}
 \end{center}
 \subsection{Hash Table}
 Onde evitare di dover riscrivere codice si \`e scelto di sfruttare
 il nodo generico anche per l'\textbf{HashTable}. A tal proposito
 si \`e sviluppato una tabella hash ad \textbf{indirizzamento aperto} che
-prende in input come paramentro templato, il dato da conservare e 
-la funzione di hash sotto forma di classe.
+prende in input come paramentro templato, il dato da conservare.
 Per risolvere le collisioni si \`e scelto di usare due funzioni hash:
 \texttt{k} \`e un valore double che indica
 la chiave, $\texttt{i}$ \`e l'iteratore che al massimo 
@@ -128,12 +131,24 @@ si riapplicher\`a
 $h(i, m) = (h_1(k) + i * h_2(k)) \ mod \ m$. Sebbene con un costo 
 computazionale pi\`u alto, il doppio hashing risolve le collisioni
 pi\`u in fretta rispetto allispezione lineare o quadratica.\newline \indent 
-La funzione $search()$ nella class \textbf{HashTable} usa due
-diversi parametri di input per restituire valori diversi. Con la 
+La funzione $search()$ nella class \textbf{HashTable}
+\`e stata sovraccaricata per restituire valori diversi. Con la 
 ricerca per valore si restituise, se disponibile un indice che 
 usato nella seconda funzione di ricerca restituisce il dato.
 
 \begin{center}
-\includegraphics[scale=0.6]{tesina_tex/rbhash/2img/hash.eps}
+\includegraphics[scale=0.7]{src/rbhash/2img/hash.eps}
 \captionof{figure}{Hash Table}
+\end{center}
+
+\newpage
+\subsection{Red Black Hash}
+La struttura dati realizzata fa uso degli alberi red black
+e delle tavole di hash come spiegato nel primo paragrafo.
+Si è scelto di usare una classe \textbf{Parser} per riempire la
+struttura dati delle tuple contenute nel file di testo
+o di quelle inserite tramite riga di comando.
+\begin{center}
+\includegraphics[scale=0.8]{src/rbhash/2img/rbhash.eps}
+\captionof{figure}{Parser e RBH}
 \end{center}
