@@ -7,13 +7,13 @@
 \indent Il programma lavora su tuple nel formato $chiave1:chiave2:stringa$ e i dati in input sono dati da:
 \begin{itemize}
     \item file di testo da selezionare all'avvio contenente le tuple;
-    \begin{lstlisting}[language=bash]
-    $ ./rbhash inputs/asd.txt
-    \end{lstlisting}
+    \begin{minted}{bash}
+        $ ./rbhash inputs/asd.txt
+    \end{minted}
     \item opzione da tastiera per effettuare operazioni sulle tuple.
-     \begin{lstlisting}[language=bash]
+    \begin{minted}{bash}
     >_ 1:2:stringa
-    \end{lstlisting}
+    \end{minted}
 \end{itemize}
 Il programma legger\`a le righe e allocher\`a nodi e hashtable in base alle chiavi date in input.
 \subsection{Output}
@@ -21,7 +21,7 @@ L'output del programma \`e un menu contestuale in cui l'utente pu\`o effettuare 
 mostrate di seguito:
 
 
-\begin{lstlisting}[language=bash]
+\begin{minted}[bash]
   **** MENU ****
 
    1. Insert
@@ -30,7 +30,7 @@ mostrate di seguito:
    4. Print
    0. Exit
   >_
-\end{lstlisting}
+\end{minted}
 
 
 \noindent Tutte le opzioni restituiscono un output di avvenuta operazione con dettagli su eventuali errori,
