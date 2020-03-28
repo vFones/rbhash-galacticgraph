@@ -27,4 +27,4 @@ the fastest path to another star system B.
 ### TODO
 The projects aren't perfect and present two bugs:
 * Red black hash doesn't work with CRLR files
-* Galactics trales error in wormholes load. Must use Ws node.
+* Galactics travels got an error during wormholes load. Must use Ws node instead of last W/B nodes in files.
